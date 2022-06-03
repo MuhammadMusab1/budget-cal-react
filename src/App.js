@@ -1,8 +1,7 @@
 import "./App.css";
 import "./style.css";
 //Components Import
-import { Top } from "./components/Top";
-import { Bottom } from "./components/Bottom";
+import { BudgetSummary } from "./components/BudgetSummary";
 import { IncomeList } from "./components/IncomeList";
 import { ExpenseList } from "./components/ExpenseList";
 import { Add } from "./components/Add";
@@ -10,14 +9,16 @@ import { Add } from "./components/Add";
 function App() {
   return (
     <div className="app">
-      <Top />
-      <Bottom>
+      <div className="top">
+        <BudgetSummary />
+      </div>
+      <div className="bottom">
         <Add />
         <div className="container">
           <IncomeList />
           <ExpenseList />
         </div>
-      </Bottom>
+      </div>
     </div>
   );
 }
