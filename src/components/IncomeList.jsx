@@ -2,7 +2,7 @@ import { Income } from "./Income";
 function IncomeList(props) {
   return (
     <div className="income">
-      <h2 className="icome__title">Income</h2>
+      <h2 className="income__title">Income</h2>
       <div className="income__list">
         <Income />
         <div className="item" data-transaction-id="1">
