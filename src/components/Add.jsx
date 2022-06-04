@@ -14,7 +14,7 @@ function Add(props) {
   }
   //OnClick handler
   function handleClick(e) {
-    addItem(description, amount);
+    addItem(description, +amount); //amount wil be a string so convert it to a number
     setAmount(0);
     setDescription("");
   }

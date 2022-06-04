@@ -29,10 +29,14 @@ function App() {
     },
   ];
   const [allItems, setAllItems] = useState(InitialState);
+  const [totalBudget, setTotalBudget] = useState(0);
+  useEffect(() => {
+    setTotalBudget(handleUpdateTotalBudget());
+  }, [allItems]);
   //Handle functions
   function handleDeleteItem(id) {
     setAllItems((prevState) => {
-      prevState.filter((item) => item.id !== id);
+      return prevState.filter((item) => item.id !== id);
     });
   }
   function handleAddItem(description, amount) {
@@ -49,11 +53,23 @@ function App() {
       ];
     });
   }
+  function handleUpdateTotalBudget() {
+    let budget = allItems.reduce(
+      (prevItem, currentItem) => {
+        return { value: prevItem.value + currentItem.value };
+      },
+      { value: 0 }
+    );
+    //at the end of the loop budget will be an object with the value that has the combined total budget
+    //need a initialValue of 0 so when we don't have any items in the array it returns 0.
+    //stackOverflow link: https://stackoverflow.com/questions/5732043/how-to-call-reduce-on-an-array-of-objects-to-sum-their-properties
+    return budget.value;
+  }
 
   return (
     <div className="app">
       <div className="top">
-        <BudgetSummary />
+        <BudgetSummary totalBudget={totalBudget} />
       </div>
       <div className="bottom">
         <Add addItem={handleAddItem} />
