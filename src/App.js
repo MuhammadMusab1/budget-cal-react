@@ -29,6 +29,12 @@ function App() {
     },
   ];
   const [allItems, setAllItems] = useState(InitialState);
+  //Handle functions
+  function handleDeleteItem(id) {
+    setAllItems((prevState) => {
+      return prevState.filter((item) => item.id !== id);
+    });
+  }
 
   return (
     <div className="app">
@@ -38,8 +44,8 @@ function App() {
       <div className="bottom">
         <Add />
         <div className="container">
-          <IncomeList list={allItems} />
-          <ExpenseList list={allItems} />
+          <IncomeList list={allItems} deleteItem={handleDeleteItem} />
+          <ExpenseList list={allItems} deleteItem={handleDeleteItem} />
         </div>
       </div>
     </div>

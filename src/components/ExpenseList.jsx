@@ -1,10 +1,17 @@
 import { BudgetItem } from "./BudgetItem";
 import styles from "./ExpenseList.module.css";
 function ExpenseList(props) {
-  const { list } = props;
+  const { list, deleteItem } = props;
   const reactExpenseElements = list.map((item) => {
     if (item.value < 0) {
-      return <BudgetItem item={item} typeOfList="expense" key={item.id} />;
+      return (
+        <BudgetItem
+          item={item}
+          typeOfList="expense"
+          key={item.id}
+          deleteItem={deleteItem}
+        />
+      );
     }
   });
   return (

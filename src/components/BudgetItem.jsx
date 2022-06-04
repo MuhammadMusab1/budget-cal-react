@@ -1,6 +1,7 @@
 import styles from "./BudgetItem.module.css";
 function BudgetItem(props) {
-  const { typeOfList, item } = props;
+  const { typeOfList, item, deleteItem } = props;
+  //Utility Functions
   function addPercentageIfTypeExpenseList() {
     if (typeOfList === "expense") {
       return (
@@ -21,6 +22,12 @@ function BudgetItem(props) {
       return "#28b9b5";
     }
   }
+  //Click handler function
+  function handleClick(e) {
+    const id = +e.target.closest(".BudgetItem_item__-zE5l").dataset
+      .transactionId;
+    deleteItem(id);
+  }
   return (
     <div className={styles["item"]} data-transaction-id={item.id}>
       <div className={styles["item__description"]}>{item.description}</div>
@@ -34,6 +41,7 @@ function BudgetItem(props) {
         {addPercentageIfTypeExpenseList()}
         <div className={styles["item__delete"]}>
           <button
+            onClick={handleClick}
             className={styles["item__delete--btn"]}
             style={{ color: pickColorAccordingly() }}
           >
