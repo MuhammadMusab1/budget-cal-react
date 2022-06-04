@@ -81,11 +81,10 @@ function App() {
     return expenses;
   }
   function handleUpdateTotalIncome() {
-    debugger;
     const incomes = allItems
-      .filter((item) => item.value >= 0) //get  all the expenses
-      .map((item) => item.value) //get the value of all the expenses
-      .reduce((prevValue, currentValue) => prevValue + currentValue, 0); //add up all the expenses
+      .filter((item) => item.value >= 0) //get  all the incomes
+      .map((item) => item.value) //get the value of all the incomes
+      .reduce((prevValue, currentValue) => prevValue + currentValue, 0); //add up all the incomes
     return incomes;
   }
 
@@ -102,7 +101,11 @@ function App() {
         <Add addItem={handleAddItem} />
         <div className="container">
           <IncomeList list={allItems} deleteItem={handleDeleteItem} />
-          <ExpenseList list={allItems} deleteItem={handleDeleteItem} />
+          <ExpenseList
+            list={allItems}
+            deleteItem={handleDeleteItem}
+            totalIncome={totalIncome}
+          />
         </div>
       </div>
     </div>

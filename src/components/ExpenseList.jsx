@@ -1,7 +1,7 @@
 import { BudgetItem } from "./BudgetItem";
 import styles from "./ExpenseList.module.css";
 function ExpenseList(props) {
-  const { list, deleteItem } = props;
+  const { list, deleteItem, totalIncome } = props;
   const reactExpenseElements = list.map((item) => {
     if (item.value < 0) {
       return (
@@ -10,6 +10,7 @@ function ExpenseList(props) {
           typeOfItem="expense"
           key={item.id}
           deleteItem={deleteItem}
+          totalIncome={totalIncome}
         />
       );
     }

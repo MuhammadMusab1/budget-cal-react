@@ -1,6 +1,6 @@
 import styles from "./BudgetItem.module.css";
 function BudgetItem(props) {
-  const { typeOfItem, item, deleteItem } = props;
+  const { typeOfItem, item, deleteItem, totalIncome } = props;
   //Utility Functions
   function addPercentageIfTypeExpenseList() {
     if (typeOfItem === "expense") {
@@ -9,11 +9,18 @@ function BudgetItem(props) {
           className={styles["item__percentage"]}
           style={{ color: pickColorAccordingly() }}
         >
-          10%
+          {getExpensePercentage()}%
         </div>
       );
     }
     //if it is income then we don't need to show percentage
+  }
+  function getExpensePercentage() {
+    let percentage = +((Math.abs(item.value) / totalIncome) * 100).toFixed(0);
+    if (percentage === Number.POSITIVE_INFINITY) {
+      percentage = 0;
+    }
+    return percentage;
   }
   function pickColorAccordingly() {
     if (typeOfItem === "expense") {
