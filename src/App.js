@@ -32,7 +32,21 @@ function App() {
   //Handle functions
   function handleDeleteItem(id) {
     setAllItems((prevState) => {
-      return prevState.filter((item) => item.id !== id);
+      prevState.filter((item) => item.id !== id);
+    });
+  }
+  function handleAddItem(description, amount) {
+    const id = +(Math.random() * 100).toFixed(4);
+    setAllItems((prevState) => {
+      return [
+        {
+          id: id,
+          description: description,
+          value: amount,
+          date: new Date().toDateString(),
+        },
+        ...prevState,
+      ];
     });
   }
 
@@ -42,7 +56,7 @@ function App() {
         <BudgetSummary />
       </div>
       <div className="bottom">
-        <Add />
+        <Add addItem={handleAddItem} />
         <div className="container">
           <IncomeList list={allItems} deleteItem={handleDeleteItem} />
           <ExpenseList list={allItems} deleteItem={handleDeleteItem} />
