@@ -4,7 +4,7 @@ import { ExpenseSummary } from "./ExpenseSummary";
 import styles from "./BudgetSummary.module.css";
 import { useState } from "react";
 function BudgetSummary(props) {
-  const { totalBudget } = props;
+  const { totalBudget, totalExpense, totalIncome } = props;
   return (
     <div className={styles["budget"]}>
       <div className={styles["budget__title"]}>
@@ -13,10 +13,10 @@ function BudgetSummary(props) {
       </div>
 
       <div className={styles["budget__value"]}>
-        {totalBudget > 0 ? "+" : "-"} ${Math.abs(totalBudget)}
+        {totalBudget > 0 ? "+" : "-"} ${Math.abs(totalBudget).toFixed(2)}
       </div>
-      <IncomeSummary />
-      <ExpenseSummary />
+      <IncomeSummary totalIncome={totalIncome} />
+      <ExpenseSummary totalExpense={totalExpense} totalIncome={totalIncome} />
     </div>
   );
 }
