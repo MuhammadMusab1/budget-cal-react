@@ -1,14 +1,19 @@
+import styles from "./Add.module.css";
 function Add(props) {
   return (
-    <div className="add">
-      <div className="add__container">
+    <div className={styles["add"]}>
+      <div className={styles["add__container"]}>
         <input
           type="text"
-          className="add__description"
+          className={styles["add__description"]}
           placeholder="Add description"
         />
-        <input type="number" className="add__value" placeholder="Value" />
-        <button className="add__btn">
+        <input
+          type="number"
+          className={styles["add__value"]}
+          placeholder="Value"
+        />
+        <button className={styles["add__btn"]}>
           <i className="ion-ios-checkmark-outline"></i>
         </button>
       </div>

@@ -1,14 +1,16 @@
 import { IncomeSummary } from "./IncomeSummary";
 import { ExpenseSummary } from "./ExpenseSummary";
+//CSS for BudgetSummary
+import styles from "./BudgetSummary.module.css";
 function BudgetSummary(props) {
   return (
-    <div className="budget">
-      <div className="budget__title">
+    <div className={styles["budget"]}>
+      <div className={styles["budget__title"]}>
         Available Budget in{" "}
-        <span className="budget__title--month">April 2020</span>:
+        <span className={styles["budget__title--month"]}>April 2020</span>:
       </div>
 
-      <div className="budget__value">+ $225.10</div>
+      <div className={styles["budget__value"]}>+ $225.10</div>
       <IncomeSummary />
       <ExpenseSummary />
     </div>

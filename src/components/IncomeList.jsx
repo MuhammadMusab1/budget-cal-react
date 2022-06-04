@@ -1,9 +1,10 @@
 import { BudgetItem } from "./BudgetItem";
+import styles from "./IncomeList.module.css";
 function IncomeList(props) {
   return (
-    <div className="income">
-      <h2 className="income__title">Income</h2>
-      <div className="income__list">
+    <div className={styles["incomes"]}>
+      <h2 className={styles["incomes__title"]}>Income</h2>
+      <div className="incomes__list">
         <BudgetItem typeOfList="income" />
         <BudgetItem typeOfList="income" />
       </div>
