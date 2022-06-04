@@ -9,7 +9,13 @@ function BudgetSummary(props) {
     <div className={styles["budget"]}>
       <div className={styles["budget__title"]}>
         Available Budget in{" "}
-        <span className={styles["budget__title--month"]}>April 2020</span>:
+        <span className={styles["budget__title--month"]}>
+          {new Date().toLocaleDateString("en-CA", {
+            month: "long",
+            year: "numeric",
+          })}
+        </span>
+        :
       </div>
 
       <div className={styles["budget__value"]}>

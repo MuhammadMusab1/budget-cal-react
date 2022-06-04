@@ -8,30 +8,18 @@ import { ExpenseList } from "./components/ExpenseList";
 import { Add } from "./components/Add";
 
 function App() {
-  const InitialState = [
-    {
-      id: 1,
-      description: "Car Payment",
-      value: 200,
-      date: new Date().toDateString(),
-    },
-    {
-      id: 2,
-      description: "Pocket Money",
-      value: 20,
-      date: new Date().toDateString(),
-    },
-    {
-      id: 3,
-      description: "Groceries",
-      value: -100,
-      date: new Date().toDateString(),
-    },
-  ];
-  const [allItems, setAllItems] = useState(InitialState);
+  const initialItems = JSON.parse(localStorage.getItem("budgetList"));
+  //Every time the app starts it will try to get the budgetList key from localStorage
+  //if it is not there initialItems will be null
+  //and in that case allItems state will be an empty array
+  //all useEffects will run once when the application first starts
+  //and the localStorage useEffect will try make a budgetList key with a stringify value of an empty array in localStorage
+  //UseStates
+  const [allItems, setAllItems] = useState(initialItems || []);
   const [totalBudget, setTotalBudget] = useState(0);
   const [totalExpense, setTotalExpense] = useState(0);
   const [totalIncome, setTotalIncome] = useState(0);
+  //UseEffects
   useEffect(() => {
     setTotalBudget(handleUpdateTotalBudget());
   }, [allItems]);
@@ -40,6 +28,10 @@ function App() {
   }, [allItems]);
   useEffect(() => {
     setTotalIncome(handleUpdateTotalIncome());
+  }, [allItems]);
+  //localStorage useEffect
+  useEffect(() => {
+    localStorage.setItem("budgetList", JSON.stringify(allItems));
   }, [allItems]);
   //Handle functions
   function handleDeleteItem(id) {
@@ -55,7 +47,11 @@ function App() {
           id: id,
           description: description,
           value: amount,
-          date: new Date().toDateString(),
+          date: new Date().toLocaleDateString("en-CA", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          }),
         },
         ...prevState,
       ];
