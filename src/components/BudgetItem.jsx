@@ -1,6 +1,6 @@
 import styles from "./BudgetItem.module.css";
 function BudgetItem(props) {
-  const { typeOfList } = props;
+  const { typeOfList, item } = props;
   function addPercentageIfTypeExpenseList() {
     if (typeOfList === "expense") {
       return (
@@ -22,14 +22,14 @@ function BudgetItem(props) {
     }
   }
   return (
-    <div className={styles["item"]} data-transaction-id="4">
-      <div className={styles["item__description"]}>Car Payment </div>
+    <div className={styles["item"]} data-transaction-id={item.id}>
+      <div className={styles["item__description"]}>{item.description}</div>
       <div className="right">
         <div
           className={styles["item__value"]}
           style={{ color: pickColorAccordingly() }}
         >
-          - $299.99
+          {item.value > 0 ? "+" : "-"} ${Math.abs(item.value).toFixed(2)}
         </div>
         {addPercentageIfTypeExpenseList()}
         <div className={styles["item__delete"]}>
@@ -41,7 +41,7 @@ function BudgetItem(props) {
           </button>
         </div>
       </div>
-      <div className={styles["item__date"]}>Apr. 21st, 2020</div>
+      <div className={styles["item__date"]}>{item.date}</div>
     </div>
   );
 }
