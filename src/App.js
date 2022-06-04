@@ -30,8 +30,16 @@ function App() {
   ];
   const [allItems, setAllItems] = useState(InitialState);
   const [totalBudget, setTotalBudget] = useState(0);
+  const [totalExpense, setTotalExpense] = useState(0);
+  const [totalIncome, setTotalIncome] = useState(0);
   useEffect(() => {
     setTotalBudget(handleUpdateTotalBudget());
+  }, [allItems]);
+  useEffect(() => {
+    setTotalExpense(handleUpdateTotalExpense());
+  }, [allItems]);
+  useEffect(() => {
+    setTotalIncome(handleUpdateTotalIncome());
   }, [allItems]);
   //Handle functions
   function handleDeleteItem(id) {
@@ -65,11 +73,30 @@ function App() {
     //stackOverflow link: https://stackoverflow.com/questions/5732043/how-to-call-reduce-on-an-array-of-objects-to-sum-their-properties
     return budget.value;
   }
+  function handleUpdateTotalExpense() {
+    const expenses = allItems
+      .filter((item) => item.value < 0) //get  all the expenses
+      .map((item) => item.value) //get the value of all the expenses
+      .reduce((prevValue, currentValue) => prevValue + currentValue, 0); //add up all the expenses
+    return expenses;
+  }
+  function handleUpdateTotalIncome() {
+    debugger;
+    const incomes = allItems
+      .filter((item) => item.value >= 0) //get  all the expenses
+      .map((item) => item.value) //get the value of all the expenses
+      .reduce((prevValue, currentValue) => prevValue + currentValue, 0); //add up all the expenses
+    return incomes;
+  }
 
   return (
     <div className="app">
       <div className="top">
-        <BudgetSummary totalBudget={totalBudget} />
+        <BudgetSummary
+          totalBudget={totalBudget}
+          totalIncome={totalIncome}
+          totalExpense={totalExpense}
+        />
       </div>
       <div className="bottom">
         <Add addItem={handleAddItem} />
