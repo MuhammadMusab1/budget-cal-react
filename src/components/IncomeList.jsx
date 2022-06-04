@@ -7,7 +7,7 @@ function IncomeList(props) {
       return (
         <BudgetItem
           item={item}
-          typeOfList="income"
+          typeOfItem="income"
           key={item.id}
           deleteItem={deleteItem}
         />
