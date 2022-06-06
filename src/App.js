@@ -58,16 +58,13 @@ function App() {
     });
   }
   function handleUpdateTotalBudget() {
-    let budget = allItems.reduce(
-      (prevItem, currentItem) => {
-        return { value: prevItem.value + currentItem.value };
-      },
-      { value: 0 }
-    );
+    let budget = allItems.reduce((accumulator, currentItem) => {
+      return accumulator + currentItem.value;
+    }, 0);
     //at the end of the loop budget will be an object with the value that has the combined total budget
     //need a initialValue of 0 so when we don't have any items in the array it returns 0.
     //stackOverflow link: https://stackoverflow.com/questions/5732043/how-to-call-reduce-on-an-array-of-objects-to-sum-their-properties
-    return budget.value;
+    return budget;
   }
   function handleUpdateTotalExpense() {
     const expenses = allItems
