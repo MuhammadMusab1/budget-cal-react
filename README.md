@@ -1,4 +1,6 @@
-## budgetCalculator through React
+## Budget Calculator Done By Create React App
+
+- Add Incomes and Expenses and see what your budget is!!
 
 ### Highlights of the project
 
