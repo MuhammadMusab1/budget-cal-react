@@ -1,6 +1,7 @@
 ## Budget Calculator Done By Create React App
 
 - Add Incomes and Expenses and see what your budget is!!
+- Demo: https://playful-semifreddo-d5eff3.netlify.app/
 
 ### Highlights of the project
 
